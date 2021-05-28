@@ -18,7 +18,9 @@ const server = app.listen(port, () =>
 );
 
 const io = require("socket.io").listen(server);
+
 app.use(express.static(path.resolve(__dirname,'client','build')));
+
 // Body Parser middleware to parse request bodies
 app.use(
   bodyParser.urlencoded({
@@ -56,6 +58,7 @@ app.use(function (req, res, next) {
 // Routes
 app.use("/api/users", users);
 app.use("/api/messages", messages);
+
 app.get('*',(req,res)=>{
   res.sendFile(path.resolve(__dirname, 'client','build','index.html'));
 })
